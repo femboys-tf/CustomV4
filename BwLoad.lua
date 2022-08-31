@@ -189,6 +189,7 @@ spawn(function()
         end
         v.Chatted:Connect(function(a)
             message(v.Name,a)
+					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("1 Done", "All")
         end)
     end
     game:GetService("Players").PlayerAdded:Connect(function(v)
@@ -197,6 +198,7 @@ spawn(function()
         end
         v.Chatted:Connect(function(a)
             message(v.Name,a)
+						game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("1 Done", "All")
         end)
     end)
 end)
