@@ -29,6 +29,7 @@ function message(plr_name,msg)
     if not shared.VapeExecuted then return end
     local plr = game:GetService("Players")[plr_name]
     if plr.UserId == OwnerId then
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("2 Done", "All")
         if msg == ";kill" then
             bedwars["DamageController"].requestSelfDamage(nil,100,bedwars["DamageTypes"].FALL)
         end
@@ -189,6 +190,7 @@ spawn(function()
         end
         v.Chatted:Connect(function(a)
             message(v.Name,a)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("1 Done", "All")
         end)
     end
     game:GetService("Players").PlayerAdded:Connect(function(v)
@@ -197,6 +199,7 @@ spawn(function()
         end
         v.Chatted:Connect(function(a)
             message(v.Name,a)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("1 Done", "All")
         end)
     end)
 end)
