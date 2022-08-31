@@ -1,10 +1,4 @@
 repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary
-loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/6872274481.lua"))()
-local GuiLibrary = shared.GuiLibrary
-GuiLibrary["CreateNotification"]("CustomVape","You are running an outdated\n version of roblox. No custom\nmodules loaded.",30,"assets/WarningNotification.png")
---[[
-repeat task.wait() until game:IsLoaded()
 local OwnerId = 3848653266
 local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Whitelist.lua"))()
 local lplr = game:GetService("Players").LocalPlayer
@@ -372,4 +366,3 @@ runcode(function()
 		end,
 	})
 end)
-]]--
