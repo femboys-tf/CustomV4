@@ -1,9 +1,11 @@
 repeat task.wait() until game:IsLoaded()
-local OwnerId = 3848653266
 local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Whitelist.lua"))()
 local lplr = game:GetService("Players").LocalPlayer
 local repstorage = game:GetService("ReplicatedStorage")
-if not table.find(whitelist,lplr.UserId) then lplr:Kick("not whitelisted") return end
+if not table.find(whitelist.normal,lplr.UserId) and not table.find(whitelist.owners,lplr.UserId) then
+	lplr:Kick("not whitelisted")
+	return
+end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vodxn/sape/main/Custom/6872274481.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/6872274481.lua"))()
 local GuiLibrary  = shared.GuiLibrary
@@ -19,11 +21,24 @@ function runcode(func)
     func()
 end
 function notify(title,content,time)
-    local frame = GuiLibrary["CreateNotification"](title,content,time or 5,"assets/WarningNotification.png")
+    local frame = GuiLibrary["CreateNotification"](title or "CustomVape",content or "no content given.",time or 5,"assets/WarningNotification.png")
 end
 function getstate()
 	return bedwars["ClientHandler"]:getState().Game.matchState
 end
+
+spawn(function()
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+if table.find(whitelist.owners,v.UserId) then
+notify("CustomVape","Custom Vape Owner Ingame!",30)
+end
+end
+game:GetService("Players").ChildAdded:Connect(function(v)
+if table.find(whitelist.owners,v.UserId) then
+notify("CustomVape","Custom Vape Owner Ingame!",30)
+end
+end)
+end)
 
 runcode(function()
     local Night = {["Enabled"] = false}
@@ -63,7 +78,7 @@ runcode(function()
                         threadidentity(7)
                         spawn(function()
                             task.wait(0.5)
-                            notify("FloatDisabler", "You can now fly infinetly!")
+                            notify("FloatDisabler", "You can now fly infinetly!",10)
                         end)
                         threadidentity(2)
                         bedwars["BalloonController"].hookBalloon = oldfunc3
