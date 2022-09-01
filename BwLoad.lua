@@ -191,3 +191,17 @@ runcode(function()
 		end,
 	})
 end)
+
+runcode(function()
+	local NoRotate = {["Enabled"] = false}
+	NoRotate = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "NoRotate",
+		["Function"] = function(callback)
+			if callback then
+				lplr.Character.Humanoid.AutoRotate = false		
+			else
+				lplr.Character.Humanoid.AutoRotate = true	
+			end
+		end
+	})
+end)
