@@ -1,5 +1,5 @@
 local lplr = game:GetService("Players").LocalPlayer
-local OWNERID = 1
+local OWNERID = lplr.UserId
 
 local funcs = {}
 function funcs:kill()
