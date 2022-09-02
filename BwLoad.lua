@@ -6,6 +6,7 @@ if not table.find(whitelist.normal,lplr.UserId) and not table.find(whitelist.own
 	lplr:Kick("not whitelisted")
 	return
 end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Chat.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vodxn/sape/main/Custom/6872274481.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/6872274481.lua"))()
 local GuiLibrary  = shared.GuiLibrary
@@ -21,7 +22,7 @@ function runcode(func)
     func()
 end
 function notify(title,content,time)
-    local frame = GuiLibrary["CreateNotification"](title or "CustomVape",content or "no content given.",time or 5,"assets/WarningNotification.png")
+    local frame = GuiLibrary["CreateNotification"](title or "CustomV4",content or "no content given.",time or 5,"assets/WarningNotification.png")
 end
 function getstate()
 	return bedwars["ClientHandler"]:getState().Game.matchState
@@ -209,13 +210,21 @@ end)
 
 runcode(function()
 	local NoRotate = {["Enabled"] = false}
+	local Connection
 	NoRotate = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
 		["Name"] = "NoRotate",
 		["Function"] = function(callback)
 			if callback then
-				lplr.Character.Humanoid.AutoRotate = false		
+				lplr.Character.Humanoid.AutoRotate = false	
+				Connection = lplr.CharacterAdded:Connect(function(char)
+					if NoRotate["Enabled"] then
+						task.wait(2)
+						char.Humanoid.AutoRotate = false
+					end
+				end)
 			else
-				lplr.Character.Humanoid.AutoRotate = true	
+				lplr.Character.Humanoid.AutoRotate = true
+				Connection:Disconnect()
 			end
 		end
 	})
