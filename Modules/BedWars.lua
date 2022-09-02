@@ -162,45 +162,31 @@ runcode(function()
 end)
 
 runcode(function()
-	local RbHealthbar = {["Enabled"] = false}
+	local RbHotbar = {["Enabled"] = false}
     local counter = 0
     function SmokeRB(X)
         return math.acos(math.cos(X*math.pi))/math.pi
     end
-	RbHealthbar = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "RbHealthbar",
+	RbHotbar = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "RbHotbar",
 		["Function"] = function(callback)
 			if callback then
                 spawn(function()
                     repeat task.wait() until getstate() ~= 0
                     while task.wait(0.1) do
                         if not RbHealthbar["Enabled"] then return end
-                        lplr.PlayerGui.hotbar["1"].HotbarHealthbarContainer.HealthbarProgressWrapper["1"].BackgroundColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
-                        counter = counter + 0.01
-                    end
-                end)
+			for i,v in next, lplr.PlayerGui.hotbar["1"]:GetDescendants() do
+				if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
+					v.BackgroundColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
+					v.BorderColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
+					v.ImageColor3 = Color3.fromHSV(SmokeRB(counter),1,1)						
+				elseif v:IsA("ImageLabel") or v:IsA("ImageButton") then
+					v.BackgroundColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
+					v.BorderColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
+					v.ImageColor3 = Color3.fromHSV(SmokeRB(counter),1,1)
+				end
 			end
-		end,
-	})
-end)
-
-runcode(function()
-	local GodmodeTest = {["Enabled"] = false}
-	GodmodeTest = GuiLibrary["ObjectsThatCanBeSaved"]["WorldWindow"]["Api"].CreateOptionsButton({
-		["Name"] = "GodmodeTest",
-		["Function"] = function(callback)
-			if callback then
-                spawn(function()
-                    local hum = lplr.Character.Humanoid
-                    hum:SetStateEnabled(Enum.HumanoidStateType.Dead,false)
-                    hum.MaxHealth =  9e9
-                    hum.Health = 9e9
-                    Instance.new("ForceField",lplr.Character)
-                    while task.wait() do
-                        if not GodmodeTest["Enabled"] then return end
-                        hum:SetStateEnabled(Enum.HumanoidStateType.Dead,false)
-                        hum.MaxHealth =  9e9
-                        hum.Health = 9e9
+                        counter = counter + 0.01
                     end
                 end)
 			end
