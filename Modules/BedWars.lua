@@ -229,3 +229,21 @@ runcode(function()
 		end
 	})
 end)
+
+runcode(function()
+	local ChatDisabler = {["Enabled"] = false}
+	local Connection
+	ChatDisabler = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+		["Name"] = "ChatDisabler",
+		["Function"] = function(callback)
+			if callback then
+				spawn(function()
+					while task.wait(1.5) do
+						if not ChatDisabler["Enabled"] then return end
+						game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(" ", "All")
+					end
+				end)
+			end
+		end
+	})
+end)
