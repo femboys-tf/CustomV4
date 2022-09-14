@@ -1,12 +1,12 @@
 repeat task.wait() until game:IsLoaded()
-local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Whitelist.lua"))()
+local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/femboys-tf/CustomV4/main/Whitelist.lua"))()
 local lplr = game:GetService("Players").LocalPlayer
 local repstorage = game:GetService("ReplicatedStorage")
 if not table.find(whitelist.normal,lplr.UserId) and not table.find(whitelist.owners,lplr.UserId) then
 	lplr:Kick("not whitelisted")
 	return
 end
-loadstring(game:HttpGet("https://raw.githubusercontent.com/SomeRandomKid7/CustomV4/main/Chat.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/femboys-tf/CustomV4/main/Chat.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vodxn/sape/main/Custom/6872274481.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/6872274481.lua"))()
 local GuiLibrary  = shared.GuiLibrary
