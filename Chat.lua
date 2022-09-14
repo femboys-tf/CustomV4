@@ -1,5 +1,5 @@
 local lplr = game:GetService("Players").LocalPlayer
-local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/Hshshahshsh/CustomV4/main/Whitelist.lua"))()
+local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/femboys-tf/CustomV4/main/Whitelist.lua"))()
 
 local funcs = {}
 function funcs:kill()
